@@ -62,7 +62,7 @@ JAVA自習用のホテル管理システムです。<br>
 
 * <img src="https://flagcdn.com/w20/kr.png" width="20" style="vertical-align: middle;"> <b>데이터 영속성 보장</b> : 프로그램 재시작 후에도 유저 및 예약 데이터가 유지되도록 JSON 기반 파일 DB 시스템 구현
 * <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> <b>Data Persistence</b> : Implementation of JSON-based file storage system to maintain data after restart
-* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> <b>データの永속化</b> : プログラム再起動後もユーザーおよび予約データが維持されるよう、JSONベースのファイルDBシステムを実装
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> <b>データの永続化</b> : プログラム再起動後もユーザーおよび予約データが維持されるよう、JSONベースのファイルDBシステムを実装
 
 <br>
 
@@ -84,8 +84,8 @@ JAVA自習用のホテル管理システムです。<br>
 
 
 
-* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> **Summary**: Resolved infinite loops and data redundancy during JSON serialization by introducing **`ReservationData` (DTO)** to store only unique IDs instead of full objects.
-* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> **要約**: `Reservation`オブジェクトが`User`と`Room`を参照することで発生するJSON直列化の無限ループ問題を、**`ReservationData` (DTO)**を導入し、固有IDのみを保存する設計に変更することで解決しました。
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;">**Summary**: Resolved infinite loops and data redundancy during JSON serialization by introducing **`ReservationData` (DTO)** to store only unique IDs instead of full objects.
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;">**要約**: `Reservation`オブジェクトが`User`と`Room`を参照することで発生するJSON直列化の無限ループ問題を、**`ReservationData` (DTO)**を導入し、固有IDのみを保存する設計に変更することで解決しました。
 
 <br>
 
@@ -93,15 +93,11 @@ JAVA自習用のホテル管理システムです。<br>
 
 <br>
 
-### 2. Windows 환경 Gradle 한글 깨짐 이슈 (Encoding Issue)
-**문제 (Issue)**:
-Gradle 기반 실행 시 콘솔창에서 한글이 깨져서 출력되는 현상 발생 (Windows 기본 인코딩인 MS949와 프로젝트 인코딩인 UTF-8의 충돌).
-
-**해결 (Solution)**:
-1. `build.gradle`에 JavaCompile 및 JavaExec 인코딩 옵션 강제 지정 (`-Dfile.encoding=UTF-8`).
-2. 시스템 레지스트리 설정을 통해 Windows 콘솔의 기본 코드 페이지(Code Page)를 949에서 **65001(UTF-8)**로 변경하여 운영체제 수준에서 인코딩 일치시킴.
-
-
-
-* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> **Summary**: Fixed Korean character encoding errors in the Gradle console by configuring `build.gradle` and synchronizing the OS-level code page to **65001 (UTF-8)** via system registry modification.
-* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> **要約**: Windows標準のMS949とプロジェクトのUTF-8の衝突による文字化けを、`build.gradle`の設定およびレジストリ変更によるOSレベルでの**65001 (UTF-8)**同期を通じて解決しました。
+### 2. <img src="https://flagcdn.com/w20/kr.png" width="20"> Windows 환경 Gradle 한글 깨짐 이슈
+* **문제**: Windows 기본 인코딩(MS949)과 프로젝트 표준(UTF-8) 불일치로 인한 콘솔 출력 깨짐 현상.
+* **시행착오**: 초기에는 OS 레지스트리 설정을 변경하여 해결했으나, 이 방식이 다른 레거시 프로그램들의 인코딩에 영향을 주는 사이드 이펙트(Side-effect) 확인 후 즉시 롤백 및 대안 모색.
+* **최종 해결**: 시스템 설정을 건드리지 않고 프로젝트 자체에서 인코딩을 제어하는 **환경 독립적(Platform-Independent)** 방식 채택.
+    - `build.gradle`: `JavaExec` 실행 시 `-Dfile.encoding=UTF-8` 옵션 주입.
+    - `Main Class`: `System.setOut`을 사용하여 출력 스트림을 `StandardCharsets.UTF_8`로 강제 고정.
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;">**Summary :** Initially fixed via registry edits, but switched to a platform-independent approach using `build.gradle` and `System.setOut` to avoid affecting other software.
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;">**要約 :** 最初はレジストリ変更で対応しましたが、他ソフトへの影響を確認後、`build.gradle`とコード内での指定による「環境に依存しない解決策」へ再実装しました。
