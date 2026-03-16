@@ -1,4 +1,4 @@
-package com.github.ripmyskill.model;
+package com.github.kisd.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

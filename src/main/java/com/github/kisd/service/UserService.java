@@ -1,6 +1,6 @@
-package com.github.ripmyskill.service;
+package com.github.kisd.service;
 
-import com.github.ripmyskill.model.User;
+import com.github.kisd.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

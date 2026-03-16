@@ -1,10 +1,10 @@
-package com.github.ripmyskill;
+package com.github.kisd;
 
 import java.util.Scanner;
 
-import com.github.ripmyskill.model.User;
-import com.github.ripmyskill.service.HotelService;
-import com.github.ripmyskill.service.UserService;
+import com.github.kisd.model.User;
+import com.github.kisd.service.HotelService;
+import com.github.kisd.service.UserService;
 
 import static org.fusesource.jansi.Ansi.Color.*;
 import static org.fusesource.jansi.Ansi.ansi;

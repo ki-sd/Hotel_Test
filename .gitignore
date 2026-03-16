@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 !**/src/main/resources/*.json
 .kotlin
+*.json
 
 
 ### IntelliJ IDEA ###
