@@ -69,3 +69,35 @@ JAVA自習用のホテル管理システムです。<br>
 * <img src="https://flagcdn.com/w20/kr.png" width="20" style="vertical-align: middle;"> <b>관리자 매출 관리</b> : 전체 예약 데이터를 기반으로 총 매출을 실시간으로 계산하고 조회하는 기능
 * <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> <b>Sales Management</b> : Admin feature for real-time total sales calculation based on all reservation data
 * <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> <b>管理者売上管理</b> : 全予約データを基に、総売上をリアルタイムで計算・照会する機能
+
+---
+ 🛠 트러블슈팅 (Troubleshooting)
+---
+
+### 1. JSON 저장 시 객체 간 순환 참조 이슈 (Circular Reference Issue)
+**문제 (Issue)**:
+`Reservation` 객체가 `User`와 `Room`을 포함하고 있어, JSON 직렬화 시 무한 루프가 발생할 위험 및 데이터 중복 발생.
+
+**해결 (Solution)**:
+- 데이터 저장 전용 객체인 **`ReservationData` (DTO)** 도입.
+- 객체 전체를 저장하는 대신 각 객체의 고유 ID(UserId, RoomNumber)만 저장하는 방식으로 설계하여 데이터 무결성 확보 및 용량 최적화.
+
+---
+
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> **Summary**: Resolved infinite loops and data redundancy during JSON serialization by introducing **`ReservationData` (DTO)** to store only unique IDs instead of full objects.
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> **要約**: `Reservation`オブジェクトが`User`と`Room`を参照することで発生するJSON直列化の無限ループ問題を、**`ReservationData` (DTO)**を導入し、固有IDのみを保存する設計に変更することで解決しました。
+
+<br>
+
+### 2. Windows 환경 Gradle 한글 깨짐 이슈 (Encoding Issue)
+**문제 (Issue)**:
+Gradle 기반 실행 시 콘솔창에서 한글이 깨져서 출력되는 현상 발생 (Windows 기본 인코딩인 MS949와 프로젝트 인코딩인 UTF-8의 충돌).
+
+**해결 (Solution)**:
+1. `build.gradle`에 JavaCompile 및 JavaExec 인코딩 옵션 강제 지정 (`-Dfile.encoding=UTF-8`).
+2. 시스템 레지스트리 설정을 통해 Windows 콘솔의 기본 코드 페이지(Code Page)를 949에서 **65001(UTF-8)**로 변경하여 운영체제 수준에서 인코딩 일치시킴.
+
+---
+
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> **Summary**: Fixed Korean character encoding errors in the Gradle console by configuring `build.gradle` and synchronizing the OS-level code page to **65001 (UTF-8)** via system registry modification.
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> **要約**: Windows標準のMS949とプロジェクトのUTF-8の衝突による文字化けを、`build.gradle`の設定およびレジストリ変更によるOSレベルでの**65001 (UTF-8)**同期を通じて解決しました。

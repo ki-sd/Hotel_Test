@@ -24,3 +24,13 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+// 컴파일 시 UTF-8 인코딩 적용
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// 실행(Run) 시 UTF-8 인코딩 적용
+tasks.withType(JavaExec) {
+    jvmArgs += '-Dfile.encoding=UTF-8'
+}
