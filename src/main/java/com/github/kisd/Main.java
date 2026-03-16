@@ -1,5 +1,7 @@
 package com.github.kisd;
 
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import com.github.kisd.model.User;
@@ -13,6 +15,7 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true,StandardCharsets.UTF_8));
         UserService userService = new UserService();
         HotelService hotel = new HotelService(userService);
         User currentUser = null; // 현재 로그인한 사용자 정보
