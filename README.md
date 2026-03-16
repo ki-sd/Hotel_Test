@@ -12,6 +12,18 @@ This Module is Hotel Management Program for Java Study. <br>
 ### <img src="https://flagcdn.com/w20/jp.png" width="20"> 日本語 <br> 
 JAVA自習用のホテル管理システムです。<br>
 
+---
+
+🛠 개발 환경 (Environment / 開発環境)
+---
+* **Language** : <img src="https://img.shields.io/badge/Java_25-ED8B00?style=flat-square&logo=openjdk&logoColor=white" style="vertical-align: middle;">
+* **Build System** : <img src="https://img.shields.io/badge/Gradle-02303A?style=flat-square&logo=gradle&logoColor=white" style="vertical-align: middle;">
+* **IDE** : <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=flat-square&logo=intellijidea&logoColor=white" style="vertical-align: middle;">
+* **Library** : <img src="https://img.shields.io/badge/Jackson_JSON-24292e?style=flat-square&logo=json&logoColor=white" style="vertical-align: middle;">
+
+<br>
+
+---
 
 <br>
 
@@ -42,7 +54,18 @@ JAVA自習用のホテル管理システムです。<br>
 
 <br>
 
-🛠 개발 환경 (Environment / 開発環境)
 ---
-* **Language** : <img src="https://img.shields.io/badge/Java_25-ED8B00?style=flat-square&logo=openjdk&logoColor=white" style="vertical-align: middle;">
-* **IDE** : <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=flat-square&logo=intellijidea&logoColor=white" style="vertical-align: middle;">
+
+
+✨ 추가된 주요 기능 (New Features / 追加機能)
+---
+
+* <img src="https://flagcdn.com/w20/kr.png" width="20" style="vertical-align: middle;"> <b>데이터 영속성 보장</b> : 프로그램 재시작 후에도 유저 및 예약 데이터가 유지되도록 JSON 기반 파일 DB 시스템 구현
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> <b>Data Persistence</b> : Implementation of JSON-based file storage system to maintain data after restart
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> <b>データの永속化</b> : プログラム再起動後もユーザーおよび予約データが維持されるよう、JSONベースのファイルDBシステムを実装
+
+<br>
+
+* <img src="https://flagcdn.com/w20/kr.png" width="20" style="vertical-align: middle;"> <b>관리자 매출 관리</b> : 전체 예약 데이터를 기반으로 총 매출을 실시간으로 계산하고 조회하는 기능
+* <img src="https://flagcdn.com/w20/us.png" width="20" style="vertical-align: middle;"> <b>Sales Management</b> : Admin feature for real-time total sales calculation based on all reservation data
+* <img src="https://flagcdn.com/w20/jp.png" width="20" style="vertical-align: middle;"> <b>管理者売上管理</b> : 全予約データを基に、総売上をリアルタイムで計算・照会する機能
