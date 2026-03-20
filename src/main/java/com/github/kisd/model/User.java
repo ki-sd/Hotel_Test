@@ -1,7 +1,10 @@
 package com.github.kisd.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter@Setter
 public class User {
     private String userId;
     private String password;
@@ -19,10 +22,4 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.isAdmin = isAdmin;
     }
-
-    public String getUserId() { return userId; }
-    public String getPassword() { return password; }
-    public String getName() { return name; }
-    public String getPhoneNumber() { return phoneNumber; }
-    public boolean isAdmin() { return isAdmin; }
 }

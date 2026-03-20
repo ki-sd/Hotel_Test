@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.fusesource.jansi.Ansi;
 import static org.fusesource.jansi.Ansi.Color.*;
 import static org.fusesource.jansi.Ansi.ansi;
 
 public class HotelService {
-
+    @Getter@Setter
     private Map<Integer, Room> rooms;
 
     public HotelService(UserService userService) {
@@ -234,7 +236,4 @@ public class HotelService {
         return rooms.get(roomNo);
     }
 
-    public Map<Integer, Room> getRooms() {
-        return rooms;
-    }
 }

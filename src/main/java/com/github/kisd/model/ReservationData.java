@@ -1,7 +1,11 @@
 package com.github.kisd.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Getter@Setter
 public class ReservationData {
     private String id;
     private String userId;
@@ -14,19 +18,7 @@ public class ReservationData {
         this.id = res.getReservationId();
         this.userId = res.getUser().getUserId();
         this.roomNumber = res.getRoom().getRoomNo();
-        this.date = res.getReserveDate();
+        this.date = res.getCreatedAt();
     }
 
-    public String getId() {
-        return id;
-    }
-    public String getUserId() {
-        return userId;
-    }
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-    public LocalDateTime getDate() {
-        return date;
-    }
 }
