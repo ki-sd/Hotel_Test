@@ -16,6 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true,StandardCharsets.UTF_8));
+        System.setErr(new PrintStream(System.err,true,StandardCharsets.UTF_8));
         UserService userService = new UserService();
         HotelService hotel = new HotelService(userService);
         User currentUser = null; // 현재 로그인한 사용자 정보
@@ -67,13 +68,16 @@ public class Main {
                     System.out.println("1. 객실 목록  2. 객실 예약  3. 내 예약 정보  4. 로그아웃");
                     int choice = getUserInput("선택: ");
 
+                    if (choice == -1) continue;
                     switch (choice) {
                         case 1 -> hotel.showRoomGrid();
                         case 2 -> {
                             hotel.showRoomGrid();
                             int roomNo = getUserInput("예약할 객실 번호를 입력하세요:");
                             if (roomNo != -1) {
-                                hotel.reserveRoom(roomNo, currentUser);
+                                System.out.print("예약할 날짜를 입력해주세요(yyyy-MM-dd): ");
+                                String dateStr = sc.nextLine();
+//                                hotel.reserveRoom(roomNo, currentUser);
                             }
                         }
                         case 3 -> {
